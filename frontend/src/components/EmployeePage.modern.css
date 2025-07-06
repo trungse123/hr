@@ -18,19 +18,34 @@
   letter-spacing: 0.7px; margin-bottom: 20px; text-align: center;
 }
 .employee-form {
-  width: 100%; display: flex; gap: 9px; margin-bottom: 22px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
 }
 .employee-form input {
-  flex: 1; font-size: 1.05rem; border-radius: 9px;
-  border: 1.2px solid #efe6ff; padding: 9px 12px;
+  flex: 1 1 0;
+  font-size: 1.08rem;
+  border-radius: 10px;
+  border: 1.2px solid #efe6ff;
+  padding: 11px 14px;
   outline: none;
+  min-width: 0;
+  background: #faf8ff;
 }
 .employee-btn {
-  font-size: 1.03rem; font-weight: 600; border-radius: 9px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border-radius: 10px;
   background: linear-gradient(90deg,#ff6c2d 50%,#ffb86c 100%);
-  color: #fff; border: none; padding: 9px 20px;
-  box-shadow: 0 1.5px 8px #ffd6a440; cursor: pointer;
+  color: #fff; border: none;
+  padding: 0 22px;
+  min-height: 40px;
+  box-shadow: 0 1.5px 8px #ffd6a440;
+  cursor: pointer;
   transition: background 0.17s, transform 0.09s;
+  white-space: nowrap;
 }
 .employee-btn:active { transform: scale(0.97);}
 .employee-message {
@@ -72,7 +87,20 @@
   text-decoration: underline;
 }
 .employee-delete-btn:active { color: #d20000;}
+/* Responsive cho mobile */
 @media (max-width: 540px) {
-  .employee-card { width: 98vw; padding: 13px 2vw 15px 2vw;}
-  .employee-card h2 { font-size: 1.15rem;}
+  .employee-card {
+    width: 98vw; padding: 13px 2vw 15px 2vw;
+  }
+  .employee-card h2 { font-size: 1.18rem;}
+  .employee-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .employee-form input,
+  .employee-btn {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
