@@ -1,0 +1,64 @@
+.export-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg,#e0eeff 0%,#fbe9ff 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 44px 0;
+}
+.export-card {
+  width: 410px;
+  border-radius: 27px;
+  background: #fff;
+  box-shadow: 0 10px 38px #b7c6f94d, 0 2px 12px #e9baff1c;
+  padding: 36px 30px 38px 30px;
+  display: flex; flex-direction: column; align-items: center;
+  border: 1.4px solid #efe3ff;
+}
+.export-icon {
+  font-size: 3.8rem;
+  color: #34ba7a;
+  margin-bottom: 7px;
+  margin-top: -6px;
+}
+.export-card h2 {
+  font-size: 2.0rem;
+  font-weight: 800;
+  color: #ff851a;
+  margin-bottom: 7px;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+.export-desc {
+  color: #666ea3;
+  font-size: 1.10rem;
+  margin-bottom: 21px;
+  text-align: center;
+}
+.export-btn {
+  font-size: 1.11rem;
+  font-weight: 700;
+  background: linear-gradient(90deg,#34ba7a 50%,#27e9a0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 32px;
+  box-shadow: 0 2px 11px #b2ffe766;
+  transition: background 0.18s, transform 0.1s;
+  cursor: pointer;
+}
+.export-btn:active { transform: scale(0.97);}
+.export-success {
+  margin-top: 13px;
+  color: #2bb665;
+  font-size: 1.05rem;
+  font-weight: 600;
+  animation: fadeIn .65s;
+}
+@keyframes fadeIn {
+  0% {opacity: 0; transform: translateY(18px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+@media (max-width: 520px) {
+  .export-card { width: 98vw; padding: 19px 2vw 22px 2vw;}
+  .export-icon { font-size: 2.4rem;}
+  .export-card h2 { font-size: 1.15rem;}
+}

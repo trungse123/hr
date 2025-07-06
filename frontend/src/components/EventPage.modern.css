@@ -1,0 +1,180 @@
+.event-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg,#f8e8ff 0%,#e3f3ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 0;
+}
+.event-calendar-card {
+  width: 410px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 10px 40px #e7aaff25, 0 2px 18px #8edbff1c;
+  padding: 34px 26px 28px 26px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  border: 1.5px solid #f7eaff;
+}
+.event-calendar-card h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #ff6c2d;
+  letter-spacing: 1.1px;
+  margin-bottom: 17px;
+  text-align: center;
+}
+.event-calendar-form {
+  display: flex; gap: 8px; width: 100%; margin-bottom: 21px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.event-calendar-form input {
+  font-size: 1.04rem;
+  border-radius: 9px;
+  border: 1.3px solid #ece2ff;
+  padding: 8px 13px;
+  outline: none;
+  margin-bottom: 5px;
+}
+.event-calendar-form input[type="date"] {
+  min-width: 135px;
+}
+.event-calendar-form button {
+  background: linear-gradient(90deg,#ff6c2d,#ffb86c);
+  color: #fff; font-weight: 700;
+  border-radius: 9px; border: none;
+  padding: 8px 20px;
+  font-size: 1rem; cursor: pointer;
+  box-shadow: 0 2px 8px #ffd6a440;
+  transition: background 0.18s;
+}
+.event-calendar-form button:active { transform: scale(0.97);}
+.event-calendar-message {
+  color: #13b468; font-size: 1.05rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.event-calendar-wrap {
+  width: 100%;
+  margin-bottom: 17px;
+}
+.event-calendar-month {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.event-calendar-month button {
+  background: none; border: none;
+  font-size: 1.6rem;
+  color: #b493f9; cursor: pointer;
+  transition: color 0.17s;
+}
+.event-calendar-month button:active { color: #7142fc;}
+.event-calendar-title {
+  font-size: 1.23rem;
+  color: #6d3eff;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+.event-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 4px;
+}
+.event-calendar-day, .event-calendar-cell {
+  width: 34px; height: 34px;
+  text-align: center;
+  line-height: 34px;
+  font-weight: 600;
+  border-radius: 9px;
+  margin-bottom: 2px;
+  font-size: 1.03rem;
+}
+.event-calendar-day {
+  color: #999; background: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+}
+.event-calendar-cell {
+  background: #faf4ff;
+  cursor: pointer;
+  color: #6844d4;
+  border: 1.3px solid #f2e7ff;
+  transition: background 0.14s, color 0.13s, box-shadow 0.18s;
+}
+.event-calendar-cell.has-event {
+  background: linear-gradient(120deg,#fff0f4 40%,#d2fff7 100%);
+  color: #ff6c2d;
+  font-weight: 800;
+  border: 1.8px solid #ffb86c;
+  box-shadow: 0 2px 8px #ffb86c2b;
+  animation: eventpulse 0.4s;
+}
+@keyframes eventpulse {
+  0% { box-shadow: 0 0 0 #ffb86c00;}
+  70% { box-shadow: 0 0 24px #ffbc6c60;}
+  100% { box-shadow: 0 2px 8px #ffb86c2b;}
+}
+.event-calendar-cell.selected {
+  background: linear-gradient(90deg,#ffb2e4 30%,#ffecd2 100%);
+  color: #6e3afc;
+  border: 2px solid #7b35e9;
+}
+.event-eventlist {
+  width: 100%; margin-top: 7px;
+}
+.event-eventitem {
+  background: #f2f9ff;
+  padding: 13px 14px 10px 14px;
+  border-radius: 13px;
+  margin-bottom: 13px;
+  border: 1.1px solid #ffdfcc;
+  box-shadow: 0 2px 9px #ffd5c533;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.event-eventitem-title {
+  font-weight: 700;
+  color: #ff6c2d;
+  font-size: 1.13rem;
+  margin-bottom: 1px;
+}
+.event-eventitem-date {
+  font-size: 0.99rem;
+  color: #888;
+  margin-bottom: 2px;
+}
+.event-eventitem-notes {
+  font-size: 0.97rem;
+  color: #606070;
+}
+.event-eventitem-delete {
+  position: absolute;
+  top: 8px; right: 12px;
+  background: none;
+  border: none;
+  color: #e26767;
+  font-size: 0.97rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.17s;
+}
+.event-eventitem-delete:active { color: #f11414;}
+.event-calendar-empty {
+  color: #999;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+@media (max-width: 520px) {
+  .event-calendar-card { width: 99vw; padding: 18px 3vw 18px 3vw;}
+  .event-calendar-form input, .event-calendar-form button { font-size: 0.97rem;}
+  .event-calendar-day, .event-calendar-cell { width: 27px; height: 27px; font-size: 0.95rem;}
+}
