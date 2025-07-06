@@ -21,7 +21,7 @@ export default function EventPage() {
   // Lấy sự kiện từ API
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/events");
+      const res = await axios.get("https://hr-5ozw.onrender.com/api/events");
       setEvents(res.data);
     } catch (err) {
       setEvents([]);
@@ -51,7 +51,7 @@ export default function EventPage() {
   const addEvent = async () => {
     if (!title || !date) return;
     try {
-      await axios.post("http://127.0.0.1:5000/api/events", {
+      await axios.post("https://hr-5ozw.onrender.com/api/events", {
         title,
         event_date: date,
         notes,
@@ -71,7 +71,7 @@ export default function EventPage() {
 
   // Xoá sự kiện
   const deleteEvent = async (id) => {
-    await axios.delete(`http://127.0.0.1:5000/api/events/${id}`);
+    await axios.delete(`https://hr-5ozw.onrender.com/api/events/${id}`);
     fetchEvents();
   };
 

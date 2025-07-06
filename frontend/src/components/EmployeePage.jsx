@@ -10,7 +10,7 @@ export default function EmployeePage() {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/employees");
+      const res = await axios.get("https://hr-5ozw.onrender.com/api/employees");
       setEmployees(res.data);
     } catch (err) {
       console.error("Lỗi lấy nhân viên", err);
@@ -20,7 +20,7 @@ export default function EmployeePage() {
   const addEmployee = async () => {
     if (!name || !code) return;
     try {
-      await axios.post("http://127.0.0.1:5000/api/employees", { name, code });
+      await axios.post("https://hr-5ozw.onrender.com/api/employees", { name, code });
       setName("");
       setCode("");
       setMessage("Đã thêm nhân viên.");
@@ -35,7 +35,7 @@ export default function EmployeePage() {
   const deleteEmployee = async (id) => {
     if (!window.confirm("Bạn chắc chắn muốn xóa nhân viên này?")) return;
     try {
-      await axios.delete(`http://127.0.0.1:5000/api/employees/${id}`);
+      await axios.delete(`https://hr-5ozw.onrender.com/api/employees/${id}`);
       setMessage("Đã xóa nhân viên.");
       fetchEmployees();
     } catch (err) {

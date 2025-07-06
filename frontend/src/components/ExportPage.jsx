@@ -6,7 +6,7 @@ export default function ExportPage() {
 
   const handleExport = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/attendance/export");
+      const res = await fetch("https://hr-5ozw.onrender.com/api/attendance/export");
       if (!res.ok) throw new Error("Tải file thất bại");
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
