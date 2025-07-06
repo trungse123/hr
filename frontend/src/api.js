@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:5000/api";
+const BASE_URL = "https://hr-5ozw.onrender.com/api";
 
 export const fetchEmployees = () =>
   axios.get(`${BASE_URL}/employees`).then(res => res.data);
