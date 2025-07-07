@@ -223,6 +223,7 @@ function AdminPage() {
       await axios.post("https://backend-alpha-five-96.vercel.app/api/tasks", {
         code: taskForm.code,
         description: taskForm.description
+        date: selectedTaskDate // <-- THÊM DÒNG NÀY
       });
       setShowTaskModal(false);
       setTaskForm({ code: "", description: "" });
