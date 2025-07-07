@@ -217,20 +217,29 @@ function AdminPage() {
     }
   };
 
-  // Tạo tác vụ
+// Tạo tác vụ - PHIÊN BẢN CÓ GỠ LỖI CHI TIẾT
   const handleCreateTask = async () => {
     try {
+      // Gửi dữ liệu lên backend
       await axios.post("https://backend-alpha-five-96.vercel.app/api/tasks", {
         code: taskForm.code,
         description: taskForm.description,
         date: selectedTaskDate
       });
+
+      // Nếu thành công, làm mới giao diện
       setShowTaskModal(false);
       setTaskForm({ code: "", description: "" });
       const res = await axios.get("https://backend-alpha-five-96.vercel.app/api/tasks/all", { params: { date: selectedTaskDate } });
       setTasks(res.data);
+
     } catch (err) {
-      alert("Lỗi khi tạo task!");
+      // --- PHẦN GỠ LỖI QUAN TRỌNG ---
+      console.error("ĐÃ CÓ LỖI XẢY RA:", err); // In toàn bộ lỗi ra console
+
+      // Hiển thị thông báo lỗi chi tiết hơn từ backend (nếu có)
+      const errorMessage = err.response?.data?.message || "Lỗi không xác định! Vui lòng kiểm tra Console.";
+      alert(errorMessage);
     }
   };
 
