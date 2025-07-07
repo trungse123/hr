@@ -1,6 +1,134 @@
-body {
-  font-family: 'Inter', Arial, sans-serif;
-}
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Manager</title>
+    <link href="/path/to/your/index.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script> </head>
+<body class="bg-slate-100 antialiased">
+
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-3">
+            <h1 class="text-xl font-bold text-slate-800">HR Manager</h1>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            
+            <div class="mb-6 border-b border-gray-200">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" role="tablist">
+                    <li class="mr-2" role="presentation">
+                        <button class="tab-button inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" data-tab-target="#chamcong">
+                            Chấm công
+                        </button>
+                    </li>
+                    <li class="mr-2" role="presentation">
+                        <button class="tab-button inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" data-tab-target="#nhiemvu">
+                            Nhiệm vụ
+                        </button>
+                    </li>
+                    <li class="mr-2" role="presentation">
+                        <button class="tab-button inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" data-tab-target="#sukien">
+                            Sự kiện
+                        </button>
+                    </li>
+                     <li class="mr-2" role="presentation">
+                        <button class="tab-button inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" data-tab-target="#nhanvien">
+                            Nhân viên
+                        </button>
+                    </li>
+                     <li role="presentation">
+                        <button class="tab-button inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" data-tab-target="#xuatcong">
+                            Xuất công
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="myTabContent">
+                <div class="tab-pane p-4 rounded-lg bg-gray-50 transition-opacity duration-300" id="chamcong" role="tabpanel">
+                    <div class="w-full max-w-sm mx-auto text-center">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-2">Chấm công</h2>
+                        <p class="text-slate-500 mb-6">Nhập mã nhân viên để chấm công vào hoặc chấm công ra.</p>
+                        <input type="text" placeholder="Nhập mã nhân viên" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4">
+                        <div class="flex gap-4">
+                            <button class="w-full bg-indigo-600 text-white font-bold py-3 rounded-md hover:bg-indigo-700 transition-colors">Chấm công vào</button>
+                            <button class="w-full bg-orange-500 text-white font-bold py-3 rounded-md hover:bg-orange-600 transition-colors">Chấm công ra</button>
+                        </div>
+                    </div>
+                     </div>
+                <div class="tab-pane hidden p-4 rounded-lg bg-gray-50 transition-opacity duration-300" id="nhiemvu" role="tabpanel">
+                    <h3 class="text-xl font-semibold text-gray-800">Nội dung tab Nhiệm vụ</h3>
+                    <p class="text-gray-600">Đây là nơi hiển thị các nhiệm vụ được giao.</p>
+                </div>
+                <div class="tab-pane hidden p-4 rounded-lg bg-gray-50 transition-opacity duration-300" id="sukien" role="tabpanel">
+                    <h3 class="text-xl font-semibold text-gray-800">Nội dung tab Sự kiện</h3>
+                    <p class="text-gray-600">Đây là nơi hiển thị các sự kiện của công ty.</p>
+                </div>
+                 <div class="tab-pane hidden p-4 rounded-lg bg-gray-50 transition-opacity duration-300" id="nhanvien" role="tabpanel">
+                    <h3 class="text-xl font-semibold text-gray-800">Nội dung tab Nhân viên</h3>
+                    <p class="text-gray-600">Đây là nơi hiển thị danh sách nhân viên.</p>
+                </div>
+                <div class="tab-pane hidden p-4 rounded-lg bg-gray-50 transition-opacity duration-300" id="xuatcong" role="tabpanel">
+                    <h3 class="text-xl font-semibold text-gray-800">Nội dung tab Xuất công</h3>
+                    <p class="text-gray-600">Đây là nơi để xuất file chấm công.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab-button');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    // Lớp CSS cho tab đang active và inactive
+    const activeTabClasses = ['border-indigo-600', 'text-indigo-600'];
+    const inactiveTabClasses = ['border-transparent', 'hover:text-gray-600', 'hover:border-gray-300'];
+
+    function switchTab(targetTab) {
+        tabPanes.forEach(pane => {
+            // Thêm hiệu ứng fade-out trước khi ẩn
+            pane.classList.add('opacity-0');
+            setTimeout(() => {
+                pane.classList.add('hidden');
+            }, 300); // khớp với duration-300 của CSS
+        });
+
+        tabs.forEach(tab => {
+            tab.classList.remove(...activeTabClasses);
+            tab.classList.add(...inactiveTabClasses);
+            tab.setAttribute('aria-selected', 'false');
+        });
+
+        // Hiển thị panel tương ứng với hiệu ứng fade-in
+        const targetPane = document.querySelector(targetTab.dataset.tabTarget);
+        if (targetPane) {
+            setTimeout(() => {
+                targetPane.classList.remove('hidden');
+                setTimeout(() => targetPane.classList.remove('opacity-0'), 20); // Delay nhỏ để trình duyệt nhận thay đổi
+            }, 300);
+        }
+        
+        // Kích hoạt tab được click
+        targetTab.classList.add(...activeTabClasses);
+        targetTab.classList.remove(...inactiveTabClasses);
+        targetTab.setAttribute('aria-selected', 'true');
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            switchTab(tab);
+        });
+    });
+
+    // Mặc định kích hoạt tab đầu tiên khi tải trang
+    if (tabs.length > 0) {
+        switchTab(tabs[0]);
+    }
+});
+    </script>
+</body>
+</html>
