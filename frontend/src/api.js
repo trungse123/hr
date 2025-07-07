@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://backend-kappa-jade.vercel.app/api";
+const BASE_URL = "https://backend-alpha-five-96.vercel.app/api";
 
 export const fetchEmployees = () =>
   axios.get(`${BASE_URL}/employees`).then(res => res.data);
