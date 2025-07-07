@@ -145,7 +145,7 @@ function AdminPage() {
   // Tác vụ - fetch ngày có data trong tháng và data của ngày chọn
   useEffect(() => {
     const monthStr = `${taskMonth.year}-${(taskMonth.month + 1).toString().padStart(2, "0")}`;
-    axios.get("https://backend-kappa-jade.vercel.app//api/tasks/dates-in-month", { params: { month: monthStr } })
+    axios.get("https://backend-kappa-jade.vercel.app/api/tasks/dates-in-month", { params: { month: monthStr } })
       .then(res => setTasksMarkedDates(res.data || []));
   }, [taskMonth]);
 
