@@ -23,7 +23,7 @@ export default function TaskPage() {
     if (!userCode) return;
     const fetchTasks = async () => {
       try {
-        const res = await axios.get("https://hr-5ozw.onrender.com/api/tasks", {
+        const res = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks", {
           params: { code: userCode },
         });
         setTasks(res.data);
@@ -46,7 +46,7 @@ export default function TaskPage() {
   const completeTask = async (id) => {
     setLoading(true);
     try {
-      await axios.put(`https://hr-5ozw.onrender.com/api/tasks/${id}/complete`);
+      await axios.put(`https://backend-kappa-jade.vercel.app/api/tasks/${id}/complete`);
       setTasks((old) =>
         old.map((t) => (t.id === id ? { ...t, completed: true } : t))
       );
