@@ -123,13 +123,13 @@ function AdminPage() {
   // Chấm công - fetch ngày có data trong tháng và data của ngày chọn
   useEffect(() => {
     const monthStr = `${attendanceMonth.year}-${(attendanceMonth.month + 1).toString().padStart(2, "0")}`;
-    axios.get("https://hr-5ozw.onrender.com/api/attendance/dates-in-month", { params: { month: monthStr } })
+    axios.get("https://backend-kappa-jade.vercel.app/api/attendance/dates-in-month", { params: { month: monthStr } })
       .then(res => setAttendanceMarkedDates(res.data || []));
   }, [attendanceMonth]);
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://hr-5ozw.onrender.com/api/attendance/all", { params: { date: selectedDate } })
+    axios.get("https://backend-kappa-jade.vercel.app/api/attendance/all", { params: { date: selectedDate } })
       .then(res => setAttendance(res.data))
       .finally(() => setLoading(false));
   }, [selectedDate]);
@@ -145,13 +145,13 @@ function AdminPage() {
   // Tác vụ - fetch ngày có data trong tháng và data của ngày chọn
   useEffect(() => {
     const monthStr = `${taskMonth.year}-${(taskMonth.month + 1).toString().padStart(2, "0")}`;
-    axios.get("https://hr-5ozw.onrender.com/api/tasks/dates-in-month", { params: { month: monthStr } })
+    axios.get("https://backend-kappa-jade.vercel.app//api/tasks/dates-in-month", { params: { month: monthStr } })
       .then(res => setTasksMarkedDates(res.data || []));
   }, [taskMonth]);
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://hr-5ozw.onrender.com/api/tasks/all", { params: { date: selectedTaskDate } })
+    axios.get("https://backend-kappa-jade.vercel.app/api/tasks/all", { params: { date: selectedTaskDate } })
       .then(res => setTasks(res.data))
       .finally(() => setLoading(false));
   }, [selectedTaskDate]);
@@ -168,15 +168,15 @@ function AdminPage() {
   const handleDuplicateTasks = async () => {
     if (!window.confirm("Bạn muốn sao chép tất cả tác vụ ngày này cho toàn bộ ngày còn lại của tháng?")) return;
     try {
-      await axios.post("https://hr-5ozw.onrender.com/api/tasks/duplicate-to-end-of-month", {
+      await axios.post("https://backend-kappa-jade.vercel.app/api/tasks/duplicate-to-end-of-month", {
         date: selectedTaskDate
       });
       // reload task, reload ngày có task của tháng
-      const res = await axios.get("https://hr-5ozw.onrender.com/api/tasks/all", { params: { date: selectedTaskDate } });
+      const res = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks/all", { params: { date: selectedTaskDate } });
       setTasks(res.data);
       const d = new Date(selectedTaskDate);
       const monthStr = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}`;
-      const dres = await axios.get("https://hr-5ozw.onrender.com/api/tasks/dates-in-month", { params: { month: monthStr } });
+      const dres = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks/dates-in-month", { params: { month: monthStr } });
       setTasksMarkedDates(dres.data || []);
       alert("Sao chép thành công!");
     } catch (e) {
@@ -188,13 +188,13 @@ function AdminPage() {
   const handleDeleteTask = async (taskId) => {
     if (!window.confirm("Bạn có chắc muốn xóa tác vụ này?")) return;
     try {
-      await axios.delete(`https://hr-5ozw.onrender.com/api/tasks/${taskId}`);
+      await axios.delete(`https://backend-kappa-jade.vercel.app/api/tasks/${taskId}`);
       // Reload task & calendar
-      const res = await axios.get("https://hr-5ozw.onrender.com/api/tasks/all", { params: { date: selectedTaskDate } });
+      const res = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks/all", { params: { date: selectedTaskDate } });
       setTasks(res.data);
       const d = new Date(selectedTaskDate);
       const monthStr = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}`;
-      const dres = await axios.get("https://hr-5ozw.onrender.com/api/tasks/dates-in-month", { params: { month: monthStr } });
+      const dres = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks/dates-in-month", { params: { month: monthStr } });
       setTasksMarkedDates(dres.data || []);
     } catch {
       alert("Xóa thất bại!");
@@ -204,7 +204,7 @@ function AdminPage() {
   // Sự kiện (all event trong db)
   useEffect(() => {
     setLoading(true);
-    axios.get("https://hr-5ozw.onrender.com/api/events")
+    axios.get("https://backend-kappa-jade.vercel.app/api/events")
       .then(res => setEvents(res.data))
       .finally(() => setLoading(false));
   }, [tab]);
@@ -220,13 +220,13 @@ function AdminPage() {
   // Tạo tác vụ
   const handleCreateTask = async () => {
     try {
-      await axios.post("https://hr-5ozw.onrender.com/api/tasks", {
+      await axios.post("https://backend-kappa-jade.vercel.api/api/tasks", {
         code: taskForm.code,
         description: taskForm.description
       });
       setShowTaskModal(false);
       setTaskForm({ code: "", description: "" });
-      const res = await axios.get("https://hr-5ozw.onrender.com/api/tasks/all", { params: { date: selectedTaskDate } });
+      const res = await axios.get("https://backend-kappa-jade.vercel.app/api/tasks/all", { params: { date: selectedTaskDate } });
       setTasks(res.data);
     } catch (err) {
       alert("Lỗi khi tạo task!");
@@ -236,14 +236,14 @@ function AdminPage() {
   // Tạo sự kiện
   const handleCreateEvent = async () => {
     try {
-      await axios.post("https://hr-5ozw.onrender.com/api/events", {
+      await axios.post("https://backend-kappa-jade.vercel.app/api/events", {
         title: eventForm.title,
         event_date: formatDate(eventForm.event_date),
         notes: eventForm.notes
       });
       setShowEventModal(false);
       setEventForm({ title: "", event_date: today.toISOString().slice(0, 10), notes: "" });
-      const evRes = await axios.get("https://hr-5ozw.onrender.com/api/events");
+      const evRes = await axios.get("https://backend-kappa-jade.vercel.app/api/events");
       setEvents(evRes.data);
     } catch (err) {
       alert("Lỗi khi tạo sự kiện!");
@@ -254,8 +254,8 @@ function AdminPage() {
   const handleDeleteEvent = async (id) => {
     if (!window.confirm("Bạn có chắc muốn xoá sự kiện này?")) return;
     try {
-      await axios.delete(`https://hr-5ozw.onrender.com/api/events/${id}`);
-      const evRes = await axios.get("https://hr-5ozw.onrender.com/api/events");
+      await axios.delete(`https://backend-kappa-jade.vercel.app/api/events/${id}`);
+      const evRes = await axios.get("https://backend-kappa-jade.vercel.app/api/events");
       setEvents(evRes.data);
     } catch (err) {
       alert("Không thể xoá sự kiện!");
