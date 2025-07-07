@@ -21,7 +21,7 @@ export default function EventPage() {
   // Lấy sự kiện từ API
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("https://hr-5ozw.onrender.com/api/events");
+      const res = await axios.get("https://backend-kappa-jade.vercel.app/api/events");
       setEvents(res.data);
     } catch (err) {
       setEvents([]);
@@ -51,7 +51,7 @@ export default function EventPage() {
   const addEvent = async () => {
     if (!title || !date) return;
     try {
-      await axios.post("https://hr-5ozw.onrender.com/api/events", {
+      await axios.post("https://backend-kappa-jade.vercel.app/api/events", {
         title,
         event_date: date,
         notes,
@@ -71,7 +71,7 @@ export default function EventPage() {
 
   // Xoá sự kiện
   const deleteEvent = async (id) => {
-    await axios.delete(`https://hr-5ozw.onrender.com/api/events/${id}`);
+    await axios.delete(`https://backend-kappa-jade.vercel.app/api/events/${id}`);
     fetchEvents();
   };
 
