@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://hr-5ozw.onrender.com/api";
+const BASE_URL = "https://backend-kappa-jade.vercel.app/api";
 
 export const fetchEmployees = () =>
   axios.get(`${BASE_URL}/employees`).then(res => res.data);
