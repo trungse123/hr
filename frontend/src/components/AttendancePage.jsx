@@ -20,7 +20,7 @@ export default function AttendancePage() {
     }
     setLoading(true);
     try {
-      const res = await axios.post(`https://hr-5ozw.onrender.com/api/${type}`, {
+      const res = await axios.post(`https://backend-kappa-jade.vercel.app/api/${type}`, {
         code,
       });
       setMessage(res.data.message);
